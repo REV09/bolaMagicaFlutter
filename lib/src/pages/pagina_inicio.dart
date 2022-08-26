@@ -25,8 +25,14 @@ class _PaginaInicioState extends State<PaginaInicio> {
       ),
       body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          Image.network(
+            "https://gifimage.net/wp-content/uploads/2017/10/magic-8-ball-gif-6.gif",
+            height: 300.0,
+            width: 300.0,
+            fit: BoxFit.contain,
+          ),
           Text(
             'Preguntale a la bola magica',
             style: GoogleFonts.getFont('Dancing Script',
