@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaginaInicio extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class PaginaInicio extends StatefulWidget {
 
 class _PaginaInicioState extends State<PaginaInicio> {
   final _styleText = TextStyle(fontSize: 25);
+  final _tituloStyle = TextStyle(fontSize: 35, letterSpacing: 0.6);
   TextEditingController controladorPregunta = new TextEditingController();
 
   @override
@@ -15,7 +17,8 @@ class _PaginaInicioState extends State<PaginaInicio> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Titulo de la aplicacion de tarea"),
+        title: Text("La bola magica",
+            style: GoogleFonts.getFont('Bitter', textStyle: _tituloStyle)),
         centerTitle: true,
         backgroundColor: Colors.cyan.shade800,
       ),
@@ -24,8 +27,9 @@ class _PaginaInicioState extends State<PaginaInicio> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Mensaje en pantalla',
-            style: _styleText,
+            'Preguntale a la bola magica',
+            style: GoogleFonts.getFont('Dancing Script',
+                textStyle: _styleText, fontWeight: FontWeight.w700),
           ),
           TextField(
               style: _styleText,
