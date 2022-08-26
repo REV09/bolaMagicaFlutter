@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:desarrollo_de_apps_app_tarea/src/respuestas.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,8 +16,6 @@ class _PaginaInicioState extends State<PaginaInicio> {
 
   @override
   Widget build(BuildContext context) {
-    String _pregunta = "";
-
     return Scaffold(
       appBar: AppBar(
         title: Text("La bola magica",
@@ -35,7 +36,7 @@ class _PaginaInicioState extends State<PaginaInicio> {
               style: _styleText,
               decoration: InputDecoration(
                   hintText: 'Ejemplo: ¿Tengo que ir a comer?',
-                  labelText: 'Pregunta',
+                  labelText: 'Pregunta:',
                   helperText:
                       'Solo respondera lo siguiente: si, no, talvez, no lo se, preguntame despues, ahora no estoy, ¿en serio?',
                   suffixIcon: Icon(Icons.question_mark),
@@ -44,11 +45,11 @@ class _PaginaInicioState extends State<PaginaInicio> {
               controller: controladorPregunta)
         ],
       )),
-      floatingActionButton: _crearBotones(_pregunta),
+      floatingActionButton: _crearBotones(),
     );
   }
 
-  Widget _crearBotones(String pregunta) {
+  Widget _crearBotones() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
@@ -72,6 +73,13 @@ class _PaginaInicioState extends State<PaginaInicio> {
 
   void obtenerPregunta() {
     print(controladorPregunta.text);
+    responderPregunta();
+  }
+
+  void responderPregunta() {
+    String respuesta =
+        respuestas.elementAt(Random().nextInt(respuestas.length));
+    print(respuesta);
   }
 
   void limpiarCampoTexto() {
