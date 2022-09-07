@@ -29,8 +29,8 @@ class _PaginaInicioState extends State<PaginaInicio> {
         children: <Widget>[
           Image.network(
             "https://gifimage.net/wp-content/uploads/2017/10/magic-8-ball-gif-6.gif",
-            height: 300.0,
-            width: 300.0,
+            height: 250.0,
+            width: 250.0,
             fit: BoxFit.contain,
           ),
           Text(
@@ -41,7 +41,7 @@ class _PaginaInicioState extends State<PaginaInicio> {
           TextField(
               style: _styleText,
               decoration: InputDecoration(
-                  hintText: 'Ejemplo: ¿Tengo que ir a comer?',
+                  hintText: 'Ejemplo: ¿Que hora es?',
                   labelText: 'Pregunta:',
                   helperText:
                       'Solo respondera lo siguiente: si, no, talvez, no lo se, preguntame despues, ahora no estoy, ¿en serio?',
@@ -78,19 +78,47 @@ class _PaginaInicioState extends State<PaginaInicio> {
   }
 
   void obtenerPregunta() {
-    print(controladorPregunta.text);
-    responderPregunta();
+    String respuesta = responderPregunta();
+    _showMyDialog(controladorPregunta.text, respuesta);
   }
 
-  void responderPregunta() {
+  String responderPregunta() {
     String respuesta =
         respuestas.elementAt(Random().nextInt(respuestas.length));
-    print(respuesta);
+    return respuesta;
   }
 
   void limpiarCampoTexto() {
     setState(() {
       controladorPregunta.clear();
     });
+  }
+
+  Future<void> _showMyDialog(String pregunta, String respuesta) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('La bola magica responde'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(pregunta),
+                Text(respuesta),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
